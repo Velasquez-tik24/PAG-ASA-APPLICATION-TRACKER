@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PAG-ASA Scholarship Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Notification area -->
+  <div id="notification" class="notification"></div>
+
+  <!-- Register Window -->
+  <section id="register-window" class="window">
+    <div class="form-container">
+      <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
+      <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
+      <input id="register-email" type="email" placeholder="Email (Gmail)" />
+      <input id="register-password" type="password" placeholder="Password" />
+      <input id="register-password-confirm" type="password" placeholder="Confirm Password" />
+      <button id="register-btn">Register</button>
+      <p>Already have an account? <a href="#" id="to-login">Login</a></p>
+    </div>
+  </section>
+
+  <!-- Login Window -->
+  <section id="login-window" class="window hidden">
+    <div class="form-container">
+      <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
+      <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
+      <input id="login-email" type="email" placeholder="Email" />
+      <input id="login-password" type="password" placeholder="Password" />
+      <button id="login-btn">Login</button>
+      <p>Don't have an account? <a href="#" id="to-register">Register</a></p>
+    </div>
+  </section>
+
+  <!-- Fill-Up Form Window -->
+  <section id="fillup-window" class="window hidden">
+    <div class="form-container form-fillup">
+      <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
+      <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
+      <input id="first-name" type="text" placeholder="First name" />
+      <input id="middle-name" type="text" placeholder="Middle name" />
+      <input id="last-name" type="text" placeholder="Last name" />
+      <input id="course" type="text" placeholder="Course" />
+      <input id="section-year" type="text" placeholder="Section/Year level" />
+      <input id="gpa" type="number" min="0" max="5" step="0.01" placeholder="Gen Ave." />
+      <button id="track-btn">Track</button>
+    </div>
+  </section>
+
+  <!-- Status Window -->
+  <section id="status-window" class="window hidden">
+    <div class="form-container form-status">
+      <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
+      <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
+      <div id="status-result" class="status-result">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Panel -->
+  <section id="admin-window" class="window hidden">
+    <header>
+      <button id="admin-logout" class="btn small">Logout</button>
+    </header>
+    <div class="admin-container">
+      <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
+      <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
+      <table id="applicants-table">
+        <thead>
+          <tr>
+            <th>Fullname</th>
+            <th>Course</th>
+            <th>Sec/Yr</th>
+            <th>GPA</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Embedded data for users and applications (JSON) -->
+  <script>
+    // Initial data placed here as JSON for simplicity
+    const data = {
+      users: [
+        { email: "admin@pagasa.com", password: "admin123", role: "admin" }
+      ],
+      applicants: []
+    };
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
