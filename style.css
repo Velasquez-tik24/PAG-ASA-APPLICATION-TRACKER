@@ -1,10 +1,16 @@
 /* Reset some default styles */
+* {
+  box-sizing: border-box; /* Ensures padding/borders don't break widths */
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: url('WALLPAPER.jpg') no-repeat center center fixed;
+  /* Fallback background color in case WALLPAPER.jpg doesn't load */
+  background: #f0f0f0 url('WALLPAPER.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #222;
+  min-height: 100vh; /* Ensures full viewport height for centering */
 }
 
 /* Central window container */
@@ -13,14 +19,16 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for better visibility */
   border-radius: 1rem;
   padding: 2rem;
-  max-width: 1400px; /* Increased for wider tables */
-  width: 95%; /* Use more space */
+  max-width: 1400px;
+  width: 95%;
+  min-height: 50vh; /* Prevents it from being too small */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   text-align: center;
-  overflow-x: auto; /* Allow scroll if content overflows */
+  overflow-x: auto;
+  overflow-y: auto; /* Allow vertical scroll if needed */
 }
 
 /* Hide any element with this class */
@@ -79,7 +87,6 @@ input[type="number"] {
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   font-size: 1rem;
-  box-sizing: border-box;
 }
 
 /* Search input */
@@ -90,7 +97,6 @@ input[type="number"] {
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   font-size: 1rem;
-  box-sizing: border-box;
   margin-bottom: 1rem;
 }
 
@@ -145,7 +151,7 @@ a:hover {
 
 /* Admin container */
 .admin-container {
-  position: relative; /* allows absolute positioning inside */
+  position: relative;
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
@@ -173,7 +179,7 @@ th, td {
 }
 
 /* Buttons inside tables */
-.btn { 
+.btn {
   background-color: #6BA8F1;
   border: none;
   border-radius: 0.3rem;
@@ -230,14 +236,12 @@ th, td {
   text-align: center;
   pointer-events: none;
   background-color: #eee;
-  box-sizing: border-box;
 }
 
 /* Additional form fillup inputs */
 .form-fillup input {
   max-width: 300px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 /* Admin top-right button */
@@ -259,4 +263,23 @@ th, td {
 .admin-top-btn:hover {
   background-color: #4a74d9;
   color: white;
+}
+
+/* Mobile responsiveness (for GitHub views on small screens) */
+@media (max-width: 768px) {
+  .window {
+    width: 98%;
+    padding: 1rem;
+    max-width: none;
+  }
+  table {
+    font-size: 0.9rem;
+  }
+  th, td {
+    padding: 0.5rem;
+  }
+  .logout-btn, .admin-top-btn {
+    position: static; /* Stack on mobile instead of fixed */
+    margin: 0.5rem;
+  }
 }
