@@ -38,13 +38,14 @@
   <!-- Fill-Up Form Window -->
   <section id="fillup-window" class="window hidden">
     <div class="form-container form-fillup">
+      <button id="applicant-logout" class="logout-btn">Logout</button>
       <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
       <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
       <input id="first-name" type="text" placeholder="First name" />
       <input id="middle-name" type="text" placeholder="Middle name" />
       <input id="last-name" type="text" placeholder="Last name" />
       <input id="course" type="text" placeholder="Course" />
-      <input id="section-year" type="text" placeholder="Section/Year level" />
+      <input id="section-year" type="text" placeholder="Year Level/Section" />
       <input id="gpa" type="number" min="0" max="5" step="0.01" placeholder="Gen Ave." />
       <button id="track-btn">Track</button>
     </div>
@@ -53,6 +54,7 @@
   <!-- Status Window -->
   <section id="status-window" class="window hidden">
     <div class="form-container form-status">
+      <button id="applicant-logout-status" class="logout-btn">Logout</button>
       <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
       <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
       <div id="status-result" class="status-result">
@@ -63,33 +65,44 @@
 
   <!-- Admin Panel -->
   <section id="admin-window" class="window hidden">
-    <header>
-      <button id="admin-logout" class="btn small">Logout</button>
-    </header>
     <div class="admin-container">
+
+      <!-- Admin logout stays fixed on screen -->
+      <button id="admin-logout" class="logout-btn">Logout</button>
+
+      <!-- Admin content -->
       <img src="LOGO.png" alt="PAG-ASA Logo" class="logo" />
       <h2>PAG-ASA SCHOLARSHIP TRACKER</h2>
-      <table id="applicants-table">
-        <thead>
-          <tr>
-            <th>Fullname</th>
-            <th>Course</th>
-            <th>Sec/Yr</th>
-            <th>GPA</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Filled dynamically -->
-        </tbody>
-      </table>
+
+      <input
+        id="admin-search"
+        type="text"
+        placeholder="Search applicants..."
+        class="search-input"
+      />
+
+      <div class="table-wrapper">
+        <table id="applicants-table">
+          <thead>
+            <tr>
+              <th>Fullname</th>
+              <th>Course</th>
+              <th>Sec/Yr</th>
+              <th>GPA</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filled dynamically -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
   <!-- Embedded data for users and applications (JSON) -->
   <script>
-    // Initial data placed here as JSON for simplicity
     const data = {
       users: [
         { email: "admin@pagasa.com", password: "admin123", role: "admin" }
