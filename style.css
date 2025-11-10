@@ -13,13 +13,14 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255 255 255 / 0.8);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 1rem;
   padding: 2rem;
-  max-width: 400px;
-  width: 90%;
+  max-width: 1400px; /* Increased for wider tables */
+  width: 95%; /* Use more space */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  text-align: center; /* Center align text inside */
+  text-align: center;
+  overflow-x: auto; /* Allow scroll if content overflows */
 }
 
 /* Hide any element with this class */
@@ -44,7 +45,30 @@ body {
   text-align: center;
 }
 
-/* Input fields all styles */
+/* Fixed Logout button */
+.logout-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #4a74d9;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: #3563b8;
+  transform: translateY(-2px);
+}
+
+/* Input fields */
 input[type="email"],
 input[type="password"],
 input[type="text"],
@@ -55,10 +79,22 @@ input[type="number"] {
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   font-size: 1rem;
-  box-sizing: border-box; /* Include padding in width */
+  box-sizing: border-box;
 }
 
-/* Button styles */
+/* Search input */
+.search-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
 button {
   cursor: pointer;
   background-color: #6BA8F1;
@@ -70,7 +106,6 @@ button {
   width: 100%;
   max-width: 300px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  box-sizing: border-box;
 }
 
 button:hover {
@@ -95,7 +130,7 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-/* Notification message */
+/* Notification */
 .notification {
   position: fixed;
   top: 1rem;
@@ -110,34 +145,39 @@ a:hover {
 
 /* Admin container */
 .admin-container {
-  max-width: 800px;
+  position: relative; /* allows absolute positioning inside */
+  width: 100%;
   margin: 0 auto;
   padding: 1rem;
 }
 
-/* Table related styles */
+/* Table wrapper for scroll */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+/* Table styles */
 table {
   width: 100%;
   margin-top: 1rem;
   border-collapse: collapse;
-  font-size: 0.9rem;
-  table-layout: fixed; /* Fix column widths */
+  font-size: 1rem;
+  table-layout: auto;
 }
 
-th,
-td {
-  padding: 0.5rem;
+th, td {
+  padding: 0.75rem;
   border: 1px solid #ddd;
   text-align: center;
-  word-wrap: break-word; /* Allow breaking long words */
+  word-wrap: break-word;
 }
 
-/* Buttons inside tables and actions */
-.btn {
+/* Buttons inside tables */
+.btn { 
   background-color: #6BA8F1;
   border: none;
   border-radius: 0.3rem;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   cursor: pointer;
   color: black;
   font-weight: 700;
@@ -145,7 +185,7 @@ td {
 }
 
 .btn.small {
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   font-size: 0.85rem;
 }
 
@@ -155,28 +195,24 @@ td {
   border-radius: 0.3rem;
   padding: 0.3rem 0.5rem;
   margin-right: 0.3rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .btn-approve:hover {
   background-color: #388E3C;
 }
 
-.btn-reject {
+.btn-reject, .btn-delete {
   background-color: #f44336;
   color: white;
   border-radius: 0.3rem;
   padding: 0.3rem 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.btn-reject:hover {
+.btn-reject:hover, .btn-delete:hover {
   background-color: #D32F2F;
 }
 
-/* Status results section */
+/* Status results */
 .status-result {
   display: flex;
   justify-content: center;
@@ -202,4 +238,25 @@ td {
   max-width: 300px;
   width: 100%;
   box-sizing: border-box;
+}
+
+/* Admin top-right button */
+.admin-top-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #6BA8F1;
+  color: black;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.admin-top-btn:hover {
+  background-color: #4a74d9;
+  color: white;
 }
