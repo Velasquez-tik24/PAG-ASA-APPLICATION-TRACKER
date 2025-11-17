@@ -116,6 +116,9 @@
       const applicant = store.applicants.find(a => a.email === user.email);
       if (applicant) {
         showApplicantStatus(user.email);
+        editBtn.textContent = "Edit Information";
+        saveBtn.classList.add("hidden");
+        isEditing = false;
         showWindow("status");
       } else {
         showWindow("fillup");
@@ -167,12 +170,18 @@
 
     saveStore();
     showApplicantStatus(currentUser.email);
+    editBtn.textContent = "Edit Information";
+    saveBtn.classList.add("hidden");
+    isEditing = false;
     showWindow("status");
   });
 
   /* STATUS */
 
   const statusResult = document.getElementById("status-result");
+  const editBtn = document.getElementById("edit-btn");
+  const saveBtn = document.getElementById("save-btn");
+  let isEditing = false;
 
   function showApplicantStatus(email) {
     let applicant = store.applicants.find(a => a.email === email);
@@ -181,13 +190,60 @@
       return;
     }
     statusResult.innerHTML = `
-      <input type="text" readonly value="${applicant.fullname}" />
-      <input type="text" readonly value="${applicant.course}" />
-      <input type="text" readonly value="${applicant.sectionYear}" />
-      <input type="text" readonly value="${applicant.gpa}" />
-      <input type="text" readonly value="${applicant.status}" />
+      <input type="text" id="status-fullname" value="${applicant.fullname}" readonly />
+      <input type="text" id="status-course" value="${applicant.course}" readonly />
+      <input type="text" id="status-sectionYear" value="${applicant.sectionYear}" readonly />
+      <input type="number" id="status-gpa" min="0" max="5" step="0.01" value="${applicant.gpa}" readonly />
+      <input type="text" id="status-status" value="${applicant.status}" readonly />
     `;
   }
+
+  editBtn.addEventListener("click", () => {
+    if (!isEditing) {
+      // Enable editing for all except status
+      document.getElementById("status-fullname").removeAttribute("readonly");
+      document.getElementById("status-course").removeAttribute("readonly");
+      document.getElementById("status-sectionYear").removeAttribute("readonly");
+      document.getElementById("status-gpa").removeAttribute("readonly");
+      // Status remains readonly
+      editBtn.textContent = "Cancel Edit";
+      saveBtn.classList.remove("hidden");
+      isEditing = true;
+    } else {
+      // Cancel: Reload original data and disable editing
+      showApplicantStatus(currentUser.email);
+      editBtn.textContent = "Edit Information";
+      saveBtn.classList.add("hidden");
+      isEditing = false;
+    }
+  });
+
+  saveBtn.addEventListener("click", () => {
+    const fullname = document.getElementById("status-fullname").value.trim();
+    const course = document.getElementById("status-course").value.trim();
+    const sectionYear = document.getElementById("status-sectionYear").value.trim();
+    const gpa = parseFloat(document.getElementById("status-gpa").value);
+
+    // Validation (similar to fill-up)
+    if (!fullname || !course || !sectionYear || isNaN(gpa)) {
+      return showNotification("Please fill out all fields properly.");
+    }
+
+    // Update store
+    const applicant = store.applicants.find(a => a.email === currentUser.email);
+    applicant.fullname = fullname;
+    applicant.course = course;
+    applicant.sectionYear = sectionYear;
+    applicant.gpa = gpa.toFixed(2);
+    saveStore();
+
+    // Exit edit mode
+    showApplicantStatus(currentUser.email);
+    editBtn.textContent = "Edit Information";
+    saveBtn.classList.add("hidden");
+    isEditing = false;
+    showNotification("Information updated successfully!");
+  });
 
   /*  ADMIN */
 
