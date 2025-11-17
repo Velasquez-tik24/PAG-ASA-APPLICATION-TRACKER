@@ -224,6 +224,27 @@ th, td {
   background-color: #D32F2F;
 }
 
+/* Edit and Save buttons for Status Window */
+.btn-edit, .btn-save {
+  background-color: #FF9800; /* Orange for edit to distinguish from approve/reject */
+  color: white;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-edit:hover, .btn-save:hover {
+  background-color: #E68900;
+}
+.btn-save {
+  background-color: #4CAF50; /* Green for save, like approve */
+}
+.btn-save:hover {
+  background-color: #388E3C;
+}
+
 /* Status results */
 .status-result {
   display: flex;
@@ -242,6 +263,11 @@ th, td {
   text-align: center;
   pointer-events: none;
   background-color: #eee;
+}
+
+.status-result input:not([readonly]) {
+  pointer-events: auto;
+  background-color: white;
 }
 
 /* Additional form fillup inputs */
